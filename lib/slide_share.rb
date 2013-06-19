@@ -23,6 +23,7 @@ class SlideShare
   def self.get_slideshow(slideshow_url)
     params = create_parameters
     params[:slideshow_url] = slideshow_url
+    params[:detailed] = 1
     get("https://www.slideshare.net/api/2/get_slideshow", :query => params)
   end  
   
