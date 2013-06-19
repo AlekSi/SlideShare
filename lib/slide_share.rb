@@ -25,6 +25,12 @@ class SlideShare
     params[:slideshow_url] = slideshow_url
     params[:detailed] = 1
     get("https://www.slideshare.net/api/2/get_slideshow", :query => params)
+  end
+
+  def self.get_slideshow_doc(slideshow_url)
+    slideshow = self.get_slideshow(slideshow_url).first.last
+    slideshare_doc = slideshow['ThumbnailURL'][/(?<=ss_thumbnails\/)([\w-]*)(?=-thumbnail)/]
+    slideshare_doc
   end  
   
   private
