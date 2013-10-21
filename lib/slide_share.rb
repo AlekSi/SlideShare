@@ -1,6 +1,10 @@
 require 'digest/sha1'
 require "httparty"
 
+
+class SlideShareServiceError < RuntimeError; end
+
+
 class SlideShare
   include HTTParty
   @@API_KEY = nil
@@ -24,7 +28,12 @@ class SlideShare
     params = create_parameters
     params[:slideshow_url] = slideshow_url
     params[:detailed] = 1
-    get("https://www.slideshare.net/api/2/get_slideshow", :query => params)
+    response = get("https://www.slideshare.net/api/2/get_slideshow", :query => params)
+
+    unless response['SlideShareServiceError'].nil?
+      raise SlideShareServiceError.new(response['SlideShareServiceError'].to_s)
+    end
+    response
   end
 
   def self.get_slideshow_doc(slideshow_url)
