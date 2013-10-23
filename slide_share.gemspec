@@ -12,10 +12,8 @@ Gem::Specification.new do |s|
   s.summary     = %q{Gem for SlideShare using HTTParty}
   s.description = %q{Gem for SlideShare using HTTParty}
 
-  s.rubyforge_project = "slide_share"
-  
+  s.add_dependency "httparty"
   s.add_development_dependency "rspec"
-  s.add_development_dependency "httparty"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

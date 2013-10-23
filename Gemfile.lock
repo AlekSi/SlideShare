@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     slide_share (0.0.3)
+      httparty
 
 GEM
   remote: http://rubygems.org/
@@ -25,6 +26,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  httparty
   rspec
   slide_share!
